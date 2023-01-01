@@ -1,0 +1,34 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int c1=0,c2=0;
+        unordered_map<char,int> mp;
+        
+        for(int i=0;i<secret.size();i++)
+        {
+            if(secret[i]==guess[i])
+            {
+                c1++;
+            }
+            else
+            {
+                mp[secret[i]]++;
+            }
+        }
+        
+        for(int i=0;i<secret.size();i++)
+        {
+            if(secret[i]!=guess[i])
+            {
+                if(mp[guess[i]] > 0)
+                {
+                    c2++;
+                    mp[guess[i]]--;
+                }
+            }
+        }
+        
+        string str = to_string(c1)+"A"+to_string(c2)+"B";
+        return str;
+    }
+};
