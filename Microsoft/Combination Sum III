@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void checkCombine(int i,int c,int n,vector<vector<int>> &ans,vector<int> v)
+    {
+        if(c<=0){
+            if(n==0) ans.push_back(v);
+            return ;
+        }
+        
+        for(int k=i;k<=9;k++)
+        {
+            v.push_back(k);
+            checkCombine(k+1,c-1,n-k,ans,v);
+            v.pop_back();
+            
+        }
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ans;
+        
+        vector<int> v;
+        checkCombine(1,k,n,ans,v);
+        return ans;
+    }
+};
